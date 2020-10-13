@@ -56,25 +56,15 @@ const dictionary = {
     'z': [0, 1, 3],
     '-': [3, 3, 3],
 };
-window.addEventListener('load', function () {
-    // for (let i = 0; i < 12; i++) {
-    //     for (let j = 0; j < 12; j++) {
-    //         const rect = createRectangle(i, j);
-    //         document.getElementById('main').appendChild(rect);
-    //     }
-    // }
 
-    let word = "This is a test with alphabet";
+function drawWord() {
+    document.getElementById('main').innerHTML = "";
+    let word = document.getElementById("word").value;
     word = word.replaceAll(" ", "-");
     for (let i = 0; i < word.length; i++) {
         drawLetter(i%ROW_LENGTH, Math.floor(i/ROW_LENGTH), word.charAt(i));
     }
-    
-    // for (let i = 0; i < 12; i++) {
-    //     const line = drawLine(i, 0, 1, "left");
-    //     document.getElementById('main').appendChild(line);
-    // }
-});
+}
 
 function drawLetter(x, y, letter) {
     const arr = dictionary[letter];
