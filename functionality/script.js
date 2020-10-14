@@ -61,8 +61,12 @@ function drawWord() {
     document.getElementById('main').innerHTML = "";
     let word = document.getElementById("word").value;
     word = word.replaceAll(" ", "-");
+
+    let wordLength = lcm(word.length);
+    console.log(wordLength);
+    wordLength = wordLength < 0 ? ROW_LENGTH : (wordLength == word.length) ? ROW_LENGTH : wordLength;
     for (let i = 0; i < word.length; i++) {
-        drawLetter(i%ROW_LENGTH, Math.floor(i/ROW_LENGTH), word.charAt(i));
+        drawLetter(i%wordLength, Math.floor(i/wordLength), word.charAt(i));
     }
 }
 
@@ -116,4 +120,11 @@ function createRectangle(x, y) {
     rect.setAttributeNS(null, 'fill', 'white');
     rect.setAttributeNS(null, 'stroke-opacity', '.2');
     return rect;
+}
+
+function lcm(n) {
+    for (let i = n - 1; i > 5; i--) {
+        if (n % i == 0) return i;
+    }
+    return -1;
 }
